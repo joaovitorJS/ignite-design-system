@@ -1,12 +1,15 @@
-name: Deploy docs
+name: Release
 
-on: 
-  push: 
-    branches: 
-      - master
+on:
+  push:
+    branches:
+      - main
 
-jobs: 
-  build-and-deploy:
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    name: Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,13 +25,16 @@ jobs:
       - run: npm ci
 
       - run: npm run build
+        
+      - name: Publish to NPM
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: npm run release
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           TURBO_TOKEN: 0JHyA4uV6rF3HO9fHahu64tR
           TURBO_TEAM: joaovitorjs
 
-      - name: Deploy storybook
-        working-directory: ./packages/docs
-        run: npm run deploy-storybook -- --ci --existing-output-dir=storybook-static
-        env:
-          GH_TOKEN: ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
-      
+    

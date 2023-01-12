@@ -23,8 +23,6 @@ jobs:
           cache-dependency-path: '**/package-lock.json'
 
       - run: npm ci
-
-      - run: npm run build
         
       - name: Publish to NPM
         id: changesets
@@ -34,7 +32,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          TURBO_TOKEN: 0JHyA4uV6rF3HO9fHahu64tR
+          TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           TURBO_TEAM: joaovitorjs
 
     

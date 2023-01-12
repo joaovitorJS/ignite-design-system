@@ -1,0 +1,2 @@
+import{A as t}from"./index.ef8682cd.js";import"./index.5b0ae6f2.js";import"./iframe.283481b5.js";import"./index.95802c3f.js";import"./jsx-runtime.19f07d69.js";const p={title:"Data display/Avatar",component:t,args:{src:"https://github.com/joaovitorJS.png",alt:"Jo\xE3o Vitor"},argTypes:{src:{control:{type:"text"}}}},c={},m={args:{src:void 0}},e=["Primary","WithFallback"];export{c as Primary,m as WithFallback,e as __namedExportsOrder,p as default};
+//# sourceMappingURL=Avatar.stories.5995121a.js.map
